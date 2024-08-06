@@ -55,3 +55,31 @@ def retour_str(poly):
         else:
             chaine += str(1)
     return chaine
+
+
+def passage_deci_to_bin(decimal):
+    quotient = 1
+    rest = 1
+    binaire = ""
+    while quotient != 0:
+        quotient = decimal // 2
+        rest = decimal % 2
+        decimal = quotient
+        if rest == 1:
+            binaire += "1"
+        else:
+            binaire += "0"
+    new_binaire = ""
+    for i in range(len(binaire)):
+        new_binaire += binaire[-1 * (i + 1)]
+    devant = [0 * i for i in range(8 - len(binaire))]
+    devant = passage_list_to_str(devant)
+    binaire = devant + new_binaire
+    return binaire
+
+
+def passage_list_deci_to_list_bin(liste):
+    resultat = []
+    for elt in liste:
+        resultat.append(str(passage_deci_to_bin(int(elt))))
+    return resultat
